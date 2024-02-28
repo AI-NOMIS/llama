@@ -17,6 +17,7 @@ def main(
     max_batch_size: int = 8,
     max_gen_len: Optional[int] = None,
 ):
+    print(ckpt_dir)
     """
     Entry point of the program for generating text using a pretrained model.
 
