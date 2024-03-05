@@ -1,20 +1,12 @@
 # Copyright (c) Meta Platforms, Inc. and affiliates.
 # This software may be used and distributed according to the terms of the Llama 2 Community License Agreement.
 
-import json
-import os
-import sys
-import time
+import socket
 from pathlib import Path
 from typing import List, Literal, Optional, Tuple, TypedDict
 
 import torch
 import torch.nn.functional as F
-from fairscale.nn.model_parallel.initialize import (
-    get_model_parallel_rank,
-    initialize_model_parallel,
-    model_parallel_is_initialized,
-)
 
 from llama.model import ModelArgs, Transformer
 from llama.tokenizer import Tokenizer
@@ -64,6 +56,7 @@ class Llama:
         # Initialize model parallel if not already done
         if model_parallel_size is None:
             model_parallel_size = torch.cuda.device_count()
+        print(f"Hostname: {socket.gethostname()}")
         torch.distributed.init_process_group(backend="nccl", world_size=model_parallel_size, rank=0)
         torch.cuda.set_device(0)
         torch.manual_seed(seed)
