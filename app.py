@@ -4,7 +4,7 @@ from llama import Llama
 class InferlessPythonModel:
     def initialize(self):
         self.generator = Llama.build(
-            ckpt_dir="/var/nfs-mount/llama-2-7b-chat",
+            ckpt_dir="/var/nfs-mount/llama-2-7b-chat/consolidated.00.pth",
             tokenizer_path="/var/nfs-mount/llama-2-7b-chat/tokenizer.model",
             max_seq_len=512,
             max_batch_size=6,
